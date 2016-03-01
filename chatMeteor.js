@@ -11,10 +11,17 @@ Template.messages.events({
     'keypress textarea' : function(e) {
         if (e.keyCode == 13) {//enter key pressed
             var value = instance.find('textarea').value;
+            instance.find('textarea').value = '';
 
+            Messages.insert ({
+                messa:value,
+                timestamp: new Date ()
+                // user: Meteor.userId()
+            });
         }
     }
 })
+}
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
